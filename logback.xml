@@ -1,0 +1,20 @@
+<configuration>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%d{HH:mm:ss} %-5level %logger{36} %L - %msg%n</Pattern>
+    </layout>
+  </appender>
+
+  <root level="DEBUG">
+    <appender-ref ref="STDOUT" />
+  </root>
+  
+  <logger name="httpclient.wire.header" level="DEBUG"/>
+  <logger name="httpclient.wire.content" level="DEBUG"/>
+  <logger name="safran.test.ClientTest" level="DEBUG"/>
+  <logger name="org.hibernate.ejb.AbstractJarVisitor" level="INFO"/>
+  <logger name="safran.Client" level="DEBUG"/>
+  <logger name="org.hibernate" level="INFO"/>
+  <logger name="org.hibernate.type" level="TRACE"/>
+</configuration>

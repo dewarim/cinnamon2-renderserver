@@ -1,0 +1,128 @@
+<!--
+	
+-->
+
+<project name="RenderServer">
+    <description>
+        Build file for the Cinnamon RenderServer
+    </description>
+
+    <!-- properties -->
+
+    <property environment="env"/>
+    <property name="workspace.home" value="${env.CINNAMON2_SOURCE}"/>
+    <property name="lib.home" value="${env.JAVA_LIB_HOME}"/>
+    <property name="lib.groovy" value="${env.GRAILS_HOME}/lib/org.codehaus.groovy/groovy-all/jars/groovy-all-1.8.8.jar"/>
+
+    <property name="rs.home" value="${workspace.home}/RenderServer"/>
+    <property name="rs.src" value="${rs.home}/src"/>
+    <property name="rs.build" value="${rs.home}/build"/>
+    <property name="rs.build.classes" value="${rs.build}/classes"/>
+    <property name="docs.home" value="${rs.home}/docs"/>
+    <property name="rs.target" value="${rs.home}/target"/>
+    <property name="rs.jar" value="${rs.target}/renderServer.jar"/>
+    <property name="renderserver.home" value="${workspace.home}/RenderServer"/>
+
+    <property name="lib.safran" value="${rs.home}/lib/safran.jar"/>
+    <property name="lib.home" value="${user.home}/java_libs"/>
+
+    <property name="lib.testng.home" value="${lib.home}/testng-6.3.1"/>
+    <property name="lib.testng" value="${lib.testng.home}/testng-6.3.1.jar"/>
+
+    <property name="lib.slf4j" value="${lib.home}/slf4j-1.6.4"/>
+    <property name="lib.slf4j.api" value="${lib.slf4j}/slf4j-api-1.6.4.jar"/>
+    <property name="lib.logback" value="${lib.home}/logback-1.0.0"/>
+    <property name="lib.logback.core" value="${lib.logback}/logback-core-1.0.0.jar"/>
+    <property name="lib.logback.classic" value="${lib.logback}/logback-classic-1.0.0.jar"/>
+    <property name="lib.dom4j.home" value="${lib.home}/dom4j-1.6.1"/>
+    <property name="lib.dom4j" value="${lib.dom4j.home}/dom4j-1.6.1.jar"/>
+    <property name="lib.xpp3" value="${lib.dom4j.home}/lib/xpp3-1.1.3.3.jar"/>
+    <property name="lib.jaxen" value="${lib.dom4j.home}/lib/jaxen-1.1-beta-6.jar"/>
+
+
+    <property name="compile.debug" value="true"/>
+    <path id="compile.classpath">
+
+        <pathelement location="${lib.testng}"/>
+        <pathelement location="${lib.slf4j.api}"/>
+        <fileset dir="${lib.logback}" includes="logback-c*.jar" excludes="*sources.jar"/>
+        <pathelement location="${lib.dom4j}"/>
+        <pathelement location="${lib.safran}"/>
+
+    </path>
+
+
+    <!-- =================================
+    target: all
+   ================================= -->
+    <target name="all" depends="compile" description="Clean build and dist directories, then compile"/>
+
+    <!-- =================================
+    target: clean
+   ================================= -->
+    <target name="clean" description="Delete old build and dist directories">
+        <delete dir="${rs.build}"/>
+        <delete dir="${rs.target}"/>
+    </target>
+
+
+    <target name="prepare.rs" depends="clean" description="prepare for compilation of the rs lib">
+
+        <mkdir dir="${rs.build}"/>
+        <mkdir dir="${rs.target}"/>
+        <mkdir dir="${rs.build.classes}"/>
+        <mkdir dir="${rs.build}/lib"/>
+
+        <copy todir="${rs.build}/lib" file="${lib.safran}"/>
+        <copy todir="${rs.build}/lib" file="${lib.groovy}"/>
+        <copy todir="${rs.build}/lib" file="${lib.slf4j.api}"/>
+        <copy todir="${rs.build}/lib" file="${lib.logback.core}"/>
+        <copy todir="${rs.build}/lib" file="${lib.logback.classic}"/>
+        <copy todir="${rs.build}/lib" file="${lib.dom4j}"/>
+        <copy todir="${rs.build}/lib" file="${lib.xpp3}"/>
+        <copy todir="${rs.build}/lib" file="${lib.jaxen}"/>
+
+    </target>
+
+
+    <taskdef name="groovyc"
+             classname="org.codehaus.groovy.ant.Groovyc"
+             classpath="${lib.groovy}"/>
+
+
+    <!-- - - - - - - - - - - - - - - - - -
+target: compile.rs
+- - - - - - - - - - - - - - - - - -->
+    <target name="compile" depends="prepare.rs" description="compile the RenderServer and build its .jar">
+        <groovyc srcdir="${rs.src}"
+                 destdir="${rs.build.classes}"
+                >
+            <classpath>
+                <path refid="compile.classpath"/>
+            </classpath>
+        </groovyc>
+
+        <mkdir dir="${rs.build.classes}/META-INF"/>
+       <!-- <jar jarfile="${rs.build}/external-libs.jar">
+            <zipgroupfileset dir="${rs.build}/lib/">
+                <include name="**/*.jar"/>
+            </zipgroupfileset>
+        </jar>
+       -->
+        <jar destfile="${rs.jar}" basedir="${rs.build.classes}">
+            <zipgroupfileset dir="${rs.build}/lib/">
+                <include name="**/*.jar"/>
+            </zipgroupfileset>
+            <include name="**/*.class"/>
+            <include name="**/META-INF/*.xml"/>
+            <include name="**/testng.xml"/>
+            <include name="**/*.properties"/>
+
+            <manifest>
+                <attribute name="Main-Class" value="eu.renderserver.RenderServer"/>
+            </manifest>
+        </jar>
+
+    </target>
+
+</project>

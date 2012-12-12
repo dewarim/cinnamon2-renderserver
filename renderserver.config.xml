@@ -1,0 +1,24 @@
+<config>
+    <taskQueryFile>config/taskQuery.xml</taskQueryFile>
+    <threadCount>5</threadCount>
+    <sleepDuration>10000</sleepDuration>
+    <repositories>
+        <repository>
+            <name>cmn_test</name>
+            <url>http://cinnamon:8080/cinnamon/cinnamon</url>
+            <username>admin</username>
+            <password>admin</password>
+            <lifeCycleName>_RenderServerLC</lifeCycleName>
+            <registeredTasks>
+                <taskName>foo2pdf</taskName>
+            </registeredTasks>
+        </repository>
+    </repositories>
+    <tasks>
+        <task>
+            <name>foo2pdf</name>
+            <escapeUrlForCinnamonClient>false</escapeUrlForCinnamonClient>
+            <exec>java -jar lib/foo2pdf.jar __id__ __repository__</exec>
+        </task>
+    </tasks>
+</config>

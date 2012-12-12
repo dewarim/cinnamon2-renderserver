@@ -1,0 +1,24 @@
+The Cinnamon RenderServer has the following dependencies (besides a working current Cinnamon server, of course):
+
+Cinnamon:
+Optional (for testing)
+foo2pdf.jar SVN: http://cinnamon.svn.sourceforge.net/viewvc/cinnamon/RenderServer/modules/Foo2PDF
+foo2pdf.client.properties in your path to configure access of the module to the Cinnamon server.
+
+safran.jar (current)
+
+XML-parsing:
+dom4j-1.6.1.jar and dependencies:
+jaxen-1.1.3.jar
+xpp3-1.1.3.3.jar
+
+Logging:
+slf4j-api-1.6.4.jar
+logback-classic-1.0.0.jar
+logback-core-1.0.0.jar
+
+Testing:
+testng-6.3.1.jar
+
+Before running the process, you have to configure renderserver.client.properties and put it into the classpath.
+An example properties file is available as renderserver.client.example.properties.

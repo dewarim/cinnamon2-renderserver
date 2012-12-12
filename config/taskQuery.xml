@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BooleanQuery>
+    <Clause occurs="must">
+        <TermQuery fieldName="lifecyclestate">__lcsId__</TermQuery>
+    </Clause>
+    <Clause occurs="must">
+        <TermQuery fieldName="objectTypeName">_render_task</TermQuery>
+    </Clause>
+</BooleanQuery>
