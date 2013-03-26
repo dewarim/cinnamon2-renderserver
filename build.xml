@@ -12,7 +12,7 @@
     <property environment="env"/>
     <property name="workspace.home" value="${env.CINNAMON2_SOURCE}"/>
     <property name="lib.home" value="${env.JAVA_LIB_HOME}"/>
-    <property name="lib.groovy" value="${env.GRAILS_HOME}/lib/org.codehaus.groovy/groovy-all/jars/groovy-all-1.8.8.jar"/>
+    <property name="lib.groovy" value="${env.GRAILS_HOME}/lib/org.codehaus.groovy/groovy-all/jars/groovy-all-2.0.7.jar"/>
 
     <property name="rs.home" value="${workspace.home}/RenderServer"/>
     <property name="rs.src" value="${rs.home}/src"/>
