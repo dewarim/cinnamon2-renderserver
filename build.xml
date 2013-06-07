@@ -12,28 +12,27 @@
     <property environment="env"/>
     <property name="workspace.home" value="${env.CINNAMON2_SOURCE}"/>
     <property name="lib.home" value="${env.JAVA_LIB_HOME}"/>
-    <property name="lib.groovy" value="${env.GRAILS_HOME}/lib/org.codehaus.groovy/groovy-all/jars/groovy-all-2.0.7.jar"/>
+    <property name="lib.groovy" value="${env.GRAILS_HOME}/lib/org.codehaus.groovy/groovy-all/jars/groovy-all-2.0.8.jar"/>
 
-    <property name="rs.home" value="${workspace.home}/RenderServer"/>
+    <property name="rs.home" value="${workspace.home}/cinnamon2-renderserver"/>
     <property name="rs.src" value="${rs.home}/src"/>
     <property name="rs.build" value="${rs.home}/build"/>
     <property name="rs.build.classes" value="${rs.build}/classes"/>
     <property name="docs.home" value="${rs.home}/docs"/>
     <property name="rs.target" value="${rs.home}/target"/>
     <property name="rs.jar" value="${rs.target}/renderServer.jar"/>
-    <property name="renderserver.home" value="${workspace.home}/RenderServer"/>
 
     <property name="lib.safran" value="${rs.home}/lib/safran.jar"/>
-    <property name="lib.home" value="${user.home}/java_libs"/>
+    <property name="lib.home" value="${user.home}/java_libs2"/>
 
-    <property name="lib.testng.home" value="${lib.home}/testng-6.3.1"/>
-    <property name="lib.testng" value="${lib.testng.home}/testng-6.3.1.jar"/>
+    <property name="lib.testng.home" value="${lib.home}/testng-6.8"/>
+    <property name="lib.testng" value="${lib.testng.home}/testng-6.8.jar"/>
 
-    <property name="lib.slf4j" value="${lib.home}/slf4j-1.6.4"/>
-    <property name="lib.slf4j.api" value="${lib.slf4j}/slf4j-api-1.6.4.jar"/>
-    <property name="lib.logback" value="${lib.home}/logback-1.0.0"/>
-    <property name="lib.logback.core" value="${lib.logback}/logback-core-1.0.0.jar"/>
-    <property name="lib.logback.classic" value="${lib.logback}/logback-classic-1.0.0.jar"/>
+    <property name="lib.slf4j" value="${lib.home}/slf4j-1.7.2"/>
+    <property name="lib.slf4j.api" value="${lib.slf4j}/slf4j-api-1.7.2.jar"/>
+    <property name="lib.logback" value="${lib.home}/logback-1.0.9"/>
+    <property name="lib.logback.core" value="${lib.logback}/logback-core-1.0.9.jar"/>
+    <property name="lib.logback.classic" value="${lib.logback}/logback-classic-1.0.9.jar"/>
     <property name="lib.dom4j.home" value="${lib.home}/dom4j-1.6.1"/>
     <property name="lib.dom4j" value="${lib.dom4j.home}/dom4j-1.6.1.jar"/>
     <property name="lib.xpp3" value="${lib.dom4j.home}/lib/xpp3-1.1.3.3.jar"/>
