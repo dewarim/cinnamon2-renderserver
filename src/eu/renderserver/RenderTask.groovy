@@ -59,10 +59,12 @@ class RenderTask {
 
         }
 
-
         String cmd = config.getCommand(name)
         if (cmd == null || cmd.trim().length() == 0) {
-            throw new RuntimeException("Could not find command for '${name}'")
+            log.warn("Could not find command for '${name}' - ignoring task.")
+            client.unlock(id)
+            return;
+//            throw new RuntimeException("Could not find command for '${name}'")
         }
 
         String host = client.host
