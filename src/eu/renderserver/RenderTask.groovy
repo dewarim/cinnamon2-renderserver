@@ -20,6 +20,12 @@ class RenderTask {
     Config config
 
     void execute() {
+        String cmd = config.getCommand(name)
+        if (cmd == null || cmd.trim().length() == 0) {
+            log.debug("Could not find command for '${name}' - ignoring task.")
+            return;
+        }
+        
         // connect anew - each RenderTask must have its own session, in case some other RT fails
         // and (accidentally) disconnects / somehow breaks the session (connection problem, timeouts).
         client.connect();
@@ -57,14 +63,6 @@ class RenderTask {
             client.setSessionTicket(
                     ParamParser.parseXmlToDocument(sudoTicket).selectSingleNode("/sudoTicket").text)
 
-        }
-
-        String cmd = config.getCommand(name)
-        if (cmd == null || cmd.trim().length() == 0) {
-            log.warn("Could not find command for '${name}' - ignoring task.")
-            client.unlock(id)
-            return;
-//            throw new RuntimeException("Could not find command for '${name}'")
         }
 
         String host = client.host
